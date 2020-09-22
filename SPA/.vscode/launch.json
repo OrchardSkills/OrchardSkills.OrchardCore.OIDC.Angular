@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome against localhost:4200, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "runtimeArgs": [
+              "--new-window",
+              "--incognito",
+              "--remote-debugging-port=9222"
+            ],
+            "sourceMaps": true,
+            "trace": "verbose",
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Attach Chrome against, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "trace": "verbose",
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch Firefox against localhost:4200, with sourcemaps",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+  }
