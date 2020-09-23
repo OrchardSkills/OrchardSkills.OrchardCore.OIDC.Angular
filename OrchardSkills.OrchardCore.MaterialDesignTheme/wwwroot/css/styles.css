@@ -587,3 +587,11 @@ pre code {
 .widget-body label {
   padding: 5px 0;
 }
+
+.jumbotron {
+  text-align: center !important;
+}
+
+.jumbotron:first-of-type .text-left {
+  text-align: center !important;
+}
