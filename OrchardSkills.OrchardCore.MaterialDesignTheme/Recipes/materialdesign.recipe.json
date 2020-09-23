@@ -2971,11 +2971,10 @@
       "DisplayName": "Authorization Code Flow",
       "name": "OpenIdApplication",
       "ClientId": "client_id",
-      "ClientSecret": "C1ient_$ecret",
       "RedirectUris": "https://localhost:4200/signin-callback",
       "PostLogoutRedirectUris": "https://localhost:4200/signout-callback",
       "AllowAuthorizationCodeFlow": true,
-      "Type": "confidential"
+      "Type": "public"
     }
   ]
 }
