@@ -15,7 +15,8 @@ export const environment = {
   clientId: 'code_flow_client_id',
   
   clientCredentialsId: "credentials_client_id",
-  clientCredentialsSecret: "C1ientCredentials_$ecret"
+  clientCredentialsSecret: "C1ientCredentials_$ecret",
+  clientCredentialsGrantType: "client_credentials"
 };
 
 /*

@@ -1,4 +1,11 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 
-<button type="button" class="btn btn-primary" (click)="getToken($event)">Button</button>
+<button type="button" class="btn btn-primary" (click)="getToken($event)">Get Token</button>
+
+<form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <label>ContentId</label>
+    <input type = "text" name = "contentId" placeholder = "ContentId" ngModel>
+    <br/>
+    <input type = "submit" value = "Send">
+  </form>
