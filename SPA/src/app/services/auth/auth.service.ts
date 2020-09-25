@@ -89,17 +89,16 @@ export class AuthService {
     if (userCurrent && !this.authContext) {
       this.loadSecurityContext();
     }
-    user ? this._user = user :  null;
+    user ? this._user = user : null;
     return userCurrent;
   }
 
-  completeLogin() {
-    return this._userManager.signinRedirectCallback() // Returns promise to process response from the authorization endpoint. The result of the promise is the authenticated User
-    .then(user => {
-      this._user = user;
-      this._loginChangedSubject.next(!!user && !user.expired);
-      return user;
-    });
+  async completeLogin() {
+    const user = await this._userManager.signinRedirectCallback() // Returns promise to process response from the authorization endpoint. The result of the promise is the authenticated User
+      ;
+    this._user = user;
+    this._loginChangedSubject.next(!!user && !user.expired);
+    return user;
   }
 
   logout() {
@@ -112,16 +111,11 @@ export class AuthService {
     return this._userManager.signoutRedirectCallback(); // Returns promise to process response from the end session endpoint.
   }
 
-  getAccessToken() {
-    return this._userManager.getUser() // Returns promise to load the User object for the currently authenticated user.
-    .then(user => {
-      if (!!user && !user.expired) {
-        return user.access_token;
-      }
-      else {
-        return null;
-      }
-    });
+  async getAccessToken() {
+    const user = await this._userManager.getUser() // Returns promise to load the User object for the currently authenticated user.
+      ;
+    return !!user && !user.expired ? user.access_token : null
+
   }
 
   loadSecurityContext() {
