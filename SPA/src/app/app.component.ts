@@ -24,13 +24,13 @@ export class AppComponent {
   }
      
   onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value);
+    console.log('Your form data : ', form.value.contentId);
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded',
                       'Authorization': 'Bearer ' + this.accessToken}
     const body = '';
     console.log("headers = ", headers);
     console.log("body = ", body);
-    this.http.post<any>('https://localhost:44342/api/content/44daa9d1c05k001xv9x22356dv', body, { headers }).subscribe(response => {
+    this.http.post<any>('https://localhost:44342/api/content/'+form.value.contentId, body, { headers }).subscribe(response => {
       console.log("response = ", response);
     })        
 }  
