@@ -25,7 +25,7 @@ export class AuthService {
       client_id: environment.clientId, // (string): Your client application's identifier as registered with the OIDC/OAuth2 provider.
       redirect_uri: `${environment.clientRoot}signin-callback`, // (string): The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider.
       response_type: 'code', // (string, default: 'id_token'): The type of response desired from the OIDC/OAuth2 provider.
-      scope: 'openid profile', // (string, default: 'openid'): The scope being requested from the OIDC/OAuth2 provider
+      scope: 'openid profile api', // (string, default: 'openid'): The scope being requested from the OIDC/OAuth2 provider
 
       // Provider settings if CORS not supported on OIDC/OAuth2 provider metadata endpoint
       // The authority URL setting is used to make HTTP requests to discover more information 

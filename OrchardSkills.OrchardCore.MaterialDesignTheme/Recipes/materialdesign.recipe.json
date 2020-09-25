@@ -2943,21 +2943,29 @@
     },
     {
       "name": "OpenIdServerSettings",
-      "AllowAuthorizationCodeFlow": true,
+      "TestingModeEnabled": false,
+      "AccessTokenFormat": "JsonWebToken",
+      "Authority": "https://localhost:44342",
       "EnableTokenEndpoint": true,
       "EnableAuthorizationEndpoint": true,
       "EnableLogoutEndpoint": true,
       "EnableUserInfoEndpoint": true,
       "AllowPasswordFlow": true,
+      "AllowClientCredentialsFlow": true,
+      "AllowAuthorizationCodeFlow": true,
       "AllowRefreshTokenFlow": true,
-      "AllowImplicitFlow": true
-
+      "AllowImplicitFlow": false,
+      "AllowLogoutEndpoint": true,
+      "AuthorizationEndpointPath": "https://localhost:44342/connect/authorize",
+      "LogoutEndpointPath": "https://localhost:44342/connect/logout",
+      "TokenEndpointPath": "https://localhost:44342/connect/token",
+      "UserinfoEndpointPath": "https://localhost:44342/connect/userinfo"
     },
     {
       "DisplayName": "Client Credentials Flow",
       "name": "OpenIdApplication",
-      "ClientId": "console_client_id",
-      "ClientSecret": "C1ient_$ecret",
+      "ClientId": "credentials_client_id",
+      "ClientSecret": "C1ientCredentials_$ecret",
       "AllowClientCredentialsFlow": true,
       "RoleEntries": [
         {
@@ -2970,11 +2978,24 @@
     {
       "DisplayName": "Authorization Code Flow",
       "name": "OpenIdApplication",
-      "ClientId": "client_id",
+      "ClientId": "code_flow_client_id",
       "RedirectUris": "https://localhost:4200/signin-callback",
       "PostLogoutRedirectUris": "https://localhost:4200/signout-callback",
       "AllowAuthorizationCodeFlow": true,
+      "AllowLogoutEndpoint": true,
       "Type": "public"
+    },
+    {
+      "name": "OpenIdScope",
+      "Description": "A scope to provide api for remote clients",
+      "DisplayName": "api Scope",
+      "ScopeName": "api",
+      "Resources": "my_recipient"
+    },
+    {
+      "name": "OpenIdValidationSettings",
+      "Audience": "my_recipient",
+      "Authority": "https://localhost:44342"
     }
   ]
 }

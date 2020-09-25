@@ -10,11 +10,12 @@ export const environment = {
   //stsAuthority: 'https://securingangularappscoursev2-sts.azurewebsites.net/',
   //clientId: 'spa-client',
 
-  apiRoot: 'https://securingangularappscoursev2-api.azurewebsites.net/api/',
+  apiRoot: 'https://localhost:44342/api/content/40v9c72yqyan52a9sdfxqxd1xt/',
   stsAuthority: 'https://localhost:44342/',
-  clientId: 'client_id',
+  clientId: 'code_flow_client_id',
   
-  
+  clientCredentialsId: "credentials_client_id",
+  clientCredentialsSecret: "C1ientCredentials_$ecret"
 };
 
 /*
