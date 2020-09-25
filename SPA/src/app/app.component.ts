@@ -13,9 +13,10 @@ export class AppComponent {
 
   public getToken(event: Event) {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded'}
-    const body = { title:'client_id=credentials_client_id&client_secret=C1ientCredentials_$ecret&grant_type=client_credentials' }
+    const body = 'client_id=credentials_client_id&client_secret=C1ientCredentials_$ecret&grant_type=client_credentials';
+    console.log("body = ", body);
     this.http.post<any>('https://localhost:44342/connect/token/', body, { headers }).subscribe(response => {
-            console.log(response);
+            console.log("response = ", response);
     })        
   }
      
