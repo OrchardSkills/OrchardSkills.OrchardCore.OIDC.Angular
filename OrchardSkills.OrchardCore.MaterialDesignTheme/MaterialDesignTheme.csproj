@@ -13,10 +13,10 @@
 	<ItemGroup>
 		<PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-rc2-14384" />
 		<PackageReference Include="OrchardCore.Admin.Abstractions" Version="1.0.0-rc2-14384" />
-		<PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-rc2-14384" />
+		<PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-rc2-14521" />
 		<PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-rc2-14384" />
-		<PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-rc2-14384" />
-		<PackageReference Include="OrchardCore.Users.Abstractions" Version="1.0.0-rc2-14384" />
+		<PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-rc2-14521" />
+		<PackageReference Include="OrchardCore.Users.Abstractions" Version="1.0.0-rc2-14521" />
 		<PackageReference Include="OrchardCore.Users" Version="1.0.0-rc2-14384" />
 		<PackageReference Include="OrchardCore.Menu" Version="1.0.0-rc2-14384" />
 		<PackageReference Include="OrchardCore.Email.Abstractions" Version="1.0.0-rc2-14384" />
