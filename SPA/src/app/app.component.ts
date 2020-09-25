@@ -27,10 +27,12 @@ export class AppComponent {
     console.log('Your form data : ', form.value.contentId);
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded',
                       'Authorization': 'Bearer ' + this.accessToken}
+    const uri = 'https://localhost:44342/api/content/'+form.value.contentId;
     const body = '';
+    console.log ("uri = ", uri);
     console.log("headers = ", headers);
     console.log("body = ", body);
-    this.http.post<any>('https://localhost:44342/api/content/'+form.value.contentId, body, { headers }).subscribe(response => {
+    this.http.post<any>(uri, body, { headers }).subscribe(response => {
       console.log("response = ", response);
     })        
 }  
