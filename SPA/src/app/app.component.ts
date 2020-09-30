@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
   public getToken() {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-    const body = 'client_id=' + environment.clientCredentialsId + '&client_secret=' + environment.clientCredentialsSecret + '&grant_type=' + environment.clientCredentialsGrantType;
+    const body = 'client_id=' + environment.credentialsClientId + '&client_secret=' + environment.credentialsClientSecret + '&grant_type=' + environment.credentialsClientGrantType;
     console.log("body = ", body);
     this.http.post<any>('https://localhost:44342/connect/token/', body, { headers }).subscribe(response => {
       this.accessToken = response.access_token;
@@ -82,15 +82,18 @@ export class AppComponent implements OnInit {
   }
 
   deleteSubscriber(id: string) {
+    this.getToken();
     const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
     }
-    const url = 'https://localhost:44342/api/connect/' + id
-    console.log('id', id)
+    const url = 'https://localhost:44342/api/content/' + id;
+    console.log('Bearer =', this.accessToken)
+    console.log('id = ', id);
     this.http.delete(url, { headers: headers }).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err)
-    )
+    );
   }
 
   editSubscriber(id: string) {

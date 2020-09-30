@@ -14,9 +14,9 @@ export const environment = {
   stsAuthority: 'https://localhost:44342/',
   clientId: 'code_flow_client_id',
   
-  clientCredentialsId: "credentials_client_id",
-  clientCredentialsSecret: "C1ientCredentials_$ecret",
-  clientCredentialsGrantType: "client_credentials"
+  credentialsClientId: "credentials_client_id",
+  credentialsClientSecret: "credentials_C1ient$ecret",
+  credentialsClientGrantType: "client_credentials"
 };
 
 /*
