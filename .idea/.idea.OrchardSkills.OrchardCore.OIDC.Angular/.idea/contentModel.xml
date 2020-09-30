@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_OrchardSkills.OrchardCore.OIDC.Angular.-512790512.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/orchardcore.module.targets/1.0.0-rc2-14526/build/netcoreapp3.1/Package.Build.props" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="OrchardSkills.OrchardCore.CMS" t="IncludeRecursive">
+        <e p="Areas" t="Include">
+          <e p="Identity" t="Include">
+            <e p="Pages" t="Include">
+              <e p="Shared" t="Include">
+                <e p="_LoginPartial.cshtml" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Controllers" t="Include">
+          <e p="OidcConfigurationController.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="ApplicationDbContext.cs" t="Include" />
+          <e p="Migrations" t="Include">
+            <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+            <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
+            <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Models" t="Include">
+          <e p="ApplicationUser.cs" t="Include" />
+        </e>
+        <e p="NLog.config" t="Include" />
+        <e p="OrchardSkills.OrchardCore.CMS.csproj" t="IncludeRecursive" />
+        <e p="Pages" t="Include">
+          <e p="Error.cshtml" t="Include" />
+          <e p="Error.cshtml.cs" t="Include" />
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+          <e p="serviceDependencies.json" t="Include" />
+          <e p="serviceDependencies.local.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="OrchardSkills.OrchardCore.CMS.AssemblyInfo.cs" t="Include" />
+              <e p="OrchardSkills.OrchardCore.CMS.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p=".placeholder" t="Include" />
+        </e>
+      </e>
+      <e p="OrchardSkills.OrchardCore.MaterialDesignTheme" t="IncludeRecursive">
+        <e p="Manifest.cs" t="Include" />
+        <e p="MaterialDesignTheme.csproj" t="IncludeRecursive" />
+        <e p="Recipes" t="Include">
+          <e p="Snippets" t="Include">
+            <e p="aboutpage.liquid" t="Include" />
+            <e p="footer.html" t="Include" />
+            <e p="homepage.liquid" t="Include" />
+            <e p="recentBlogPosts.json" t="Include" />
+            <e p="searchBlogPosts.json" t="Include" />
+          </e>
+          <e p="materialdesign.recipe.json" t="Include" />
+        </e>
+        <e p="ResourceManifest.cs" t="Include" />
+        <e p="Startup.cs" t="Include" />
+        <e p="Views" t="Include">
+          <e p="Blog-ListPart.liquid" t="Include" />
+          <e p="BlogPost-Category.liquid" t="Include" />
+          <e p="BlogPost-Tags-TaxonomyField-Tags.Display.liquid" t="Include" />
+          <e p="Category-TermPart.liquid" t="Include" />
+          <e p="Content-AboutPage.liquid" t="Include" />
+          <e p="Content-Article.liquid" t="Include" />
+          <e p="Content-Blog.liquid" t="Include" />
+          <e p="Content-BlogPost.Summary.liquid" t="Include" />
+          <e p="Content-BlogPost.liquid" t="Include" />
+          <e p="Content-Category.Summary.liquid" t="Include" />
+          <e p="Content-Category.liquid" t="Include" />
+          <e p="Content-Page.liquid" t="Include" />
+          <e p="Content.liquid" t="Include" />
+          <e p="Layout.cshtml" t="Include" />
+          <e p="Menu.liquid" t="Include" />
+          <e p="MenuItem.liquid" t="Include" />
+          <e p="MenuItemLink-ContentMenuItem.liquid" t="Include" />
+          <e p="MenuItemLink-LinkMenuItem.liquid" t="Include" />
+          <e p="Search-Form.liquid" t="Include" />
+          <e p="Search-Results.liquid" t="Include" />
+          <e p="Shared" t="Include">
+            <e p="LoginMenu.cshtml" t="Include" />
+            <e p="LoginMenu.cshtml.cs" t="Include" />
+            <e p="NotFound.liquid" t="Include" />
+            <e p="Search.liquid" t="Include" />
+          </e>
+          <e p="Tag-TermPart.liquid" t="Include" />
+          <e p="Term-Category.liquid" t="Include" />
+          <e p="TermContentItem-Tag.liquid" t="Include" />
+          <e p="TermItem-Category.liquid" t="Include" />
+          <e p="Widget-Blockquote.liquid" t="Include" />
+          <e p="Widget-ImageWidget.liquid" t="Include" />
+          <e p="Widget-Paragraph.liquid" t="Include" />
+          <e p="Widget-RawHtml.liquid" t="Include" />
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewImports.cshtml.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MaterialDesignTheme.AssemblyInfo.cs" t="Include" />
+              <e p="MaterialDesignTheme.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="Theme.png" t="Include" />
+          <e p="css" t="Include">
+            <e p="mdb.css" t="Include" />
+            <e p="mdb.min.css" t="Include" />
+            <e p="mdb.min.css.map" t="Include" />
+            <e p="styles.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="icons" t="Include">
+            <e p="icon-1024x1024.png" t="Include" />
+            <e p="icon-114x114.png" t="Include" />
+            <e p="icon-120x120.png" t="Include" />
+            <e p="icon-128x128.png" t="Include" />
+            <e p="icon-144x144.png" t="Include" />
+            <e p="icon-152x152.png" t="Include" />
+            <e p="icon-192x192.png" t="Include" />
+            <e p="icon-384x384.png" t="Include" />
+            <e p="icon-512x512.png" t="Include" />
+            <e p="icon-57x57.png" t="Include" />
+            <e p="icon-72x72.png" t="Include" />
+            <e p="icon-90x90.png" t="Include" />
+            <e p="icon-96x96.png" t="Include" />
+          </e>
+          <e p="img" t="Include">
+            <e p="CloudComputing.png" t="Include" />
+            <e p="MobileFirst.png" t="Include" />
+            <e p="OrchardCore.png" t="Include" />
+            <e p="Pallet.png" t="Include" />
+            <e p="Responsive.png" t="Include" />
+            <e p="Widgets.png" t="Include" />
+            <e p="about-bg.jpg" t="Include" />
+            <e p="components.png" t="Include" />
+            <e p="contact-bg.jpg" t="Include" />
+            <e p="getting-started.png" t="Include" />
+            <e p="home-bg.jpg" t="Include" />
+            <e p="linux-vscode.png" t="Include" />
+            <e p="mountain-lake-bg.jpg" t="Include" />
+            <e p="night.png" t="Include" />
+            <e p="orchard-skills-1200x628.png" t="Include" />
+            <e p="post-bg.jpg" t="Include" />
+            <e p="post-sample-image.jpg" t="Include" />
+            <e p="search-bg.jpg" t="Include" />
+            <e p="sunny.png" t="Include" />
+            <e p="webdesign.png" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="mdb.js" t="Include" />
+            <e p="mdb.min.js" t="Include" />
+            <e p="mdb.min.js.map" t="Include" />
+            <e p="rellax.js" t="Include" />
+          </e>
+          <e p="robots.txt" t="Include" />
+          <e p="sitemap.xml" t="Include" />
+          <e p="videos" t="Include">
+            <e p="heaven.mp4" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="OrchardSkills.OrchardCore.OIDC.Angular.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
