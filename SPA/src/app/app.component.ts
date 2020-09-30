@@ -90,13 +90,22 @@ export class AppComponent implements OnInit {
     const url = 'https://localhost:44342/api/content/' + id;
     console.log('Bearer =', this.accessToken)
     console.log('id = ', id);
-    this.http.delete(url, { headers: headers }).pipe(catchError(err => {
+    this.http.delete(url, { headers: headers }).pipe(
+      
+      catchError(err => {
+
       console.log('Handling error locally and rethrowing it...', err);
+
       this.toastr.error(err.message)
+
       return throwError(err);
+
     })).subscribe(() => {
+
       this.toastr.success('You Successfully delete subscriber');
+
     });
+    
     setTimeout(() => {
       this.getSubscribers();
     }, 1000);
