@@ -12,7 +12,9 @@ import { SignoutCallbackComponent } from './signout-callback/signout-callback.co
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +24,16 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, // required animations module
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+
+    ToastrModule.forRoot({
+      progressBar: true
+    }), // ToastrModule added
 
   ],
   providers: [],

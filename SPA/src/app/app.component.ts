@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { catchError, map, take } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 
 interface ISubscriber {
@@ -26,13 +27,13 @@ export class AppComponent implements OnInit {
   title = 'spa';
   accessToken = '';
   subscribers!: Observable<ISubscriber[]>
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.getToken()
     setTimeout(() => {
-      this.getSubscribers()
+      this.getSubscribers();
     }, 1000);
 
   }
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
     }
     const uri = 'https://localhost:44342/api/graphql?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
 
-    this.subscribers = this.http.get(uri, { headers: headers }).pipe(
+     this.subscribers = this.http.get(uri, { headers: headers }).pipe(
       map((data: any) => {
         console.log('data', data.data.subscriber)
         return data.data.subscriber
@@ -84,16 +85,21 @@ export class AppComponent implements OnInit {
   deleteSubscriber(id: string) {
     this.getToken();
     const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
     }
     const url = 'https://localhost:44342/api/content/' + id;
     console.log('Bearer =', this.accessToken)
     console.log('id = ', id);
-    this.http.delete(url, { headers: headers }).subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err)
-    );
+    this.http.delete(url, { headers: headers }).pipe(catchError(err => {
+      console.log('Handling error locally and rethrowing it...', err);
+      this.toastr.error(err.message)
+      return throwError(err);
+    })).subscribe(() => {
+      this.toastr.success('You Successfully delete subscriber');
+    });
+    setTimeout(() => {
+      this.getSubscribers();
+    }, 1000);
   }
 
   editSubscriber(id: string) {
