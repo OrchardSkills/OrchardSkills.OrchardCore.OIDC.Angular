@@ -43,28 +43,26 @@ export class AppComponent implements OnInit {
   editing = false;
 
   constructor(
-    private authService :AuthService,
-    private http: HttpClient, 
-    private toastr: ToastrService) { }
+    private authService: AuthService,
+    private http: HttpClient,
+    private toastr: ToastrService) {
+    this.authService.loginChanged.subscribe(loggedIn => {
+      this.userAuthorized = loggedIn;
+    })
+  }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.isAuthorized();
+  
     this.getToken()
+
     setTimeout(() => {
       this.getSubscribers();
     }, 1000);
 
   }
 
-  isAuthorized () {
-    this.authService.isLoggedIn()
-    .then(loggedIn =>
-      {
-       this.userAuthorized = loggedIn;
-      })
-  }
 
   public getToken() {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -113,7 +111,7 @@ export class AppComponent implements OnInit {
 
       })).subscribe(() => {
 
-        this.toastr.success('You Successfully delete subscriber');
+        this.toastr.success('You Successfully deleted subscriber');
 
       });
 
@@ -178,7 +176,7 @@ export class AppComponent implements OnInit {
 
       })).subscribe(() => {
 
-        this.toastr.success('You Successfully delete subscriber');
+        this.toastr.success('You Successfully updated subscriber');
 
       });
     this.closeEditSubscriber();
@@ -233,7 +231,7 @@ export class AppComponent implements OnInit {
 
       })).subscribe(() => {
 
-        this.toastr.success('You Successfully delete subscriber');
+        this.toastr.success('You Successfully added new subscriber');
         this.getSubscribers();
 
       });

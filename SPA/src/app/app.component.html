@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
+<br>
 <div class="container">
   <div *ngIf="userAuthorized">
     <div class="d-flex justify-content-end mb-4">
@@ -96,7 +97,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Add New Subscriber</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -124,8 +125,8 @@
             </div>
   
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-              Add Subscriber
+            <button  data-dismiss="modal" type="submit" class="btn btn-primary btn-block mb-4">
+              Add
             </button>
           </form>
         </div>
