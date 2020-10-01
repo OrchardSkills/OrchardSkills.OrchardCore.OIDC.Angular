@@ -72,29 +72,6 @@ export class AppComponent implements OnInit {
 
 
 
-  onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value.contentId);
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ' + this.accessToken
-    }
-    const uri = this.urlApiGraphql + '?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
-    const body = '';
-    console.log("uri = ", uri);
-    console.log("headers = ", headers);
-    console.log("body = ", body);
-    this.subscribers = this.http.get(uri, { headers: headers }).pipe(
-      map((data: any) => {
-        console.log('data', data.data.subscriber)
-        return data.data.subscriber
-      })
-    )
-  }
-
-
-
-
-
   getSubscribers() {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -159,11 +136,38 @@ export class AppComponent implements OnInit {
 
   updateSubscriber(subscriber: Partial<ISubscriber>) {
 
-    const url = this.urlApiContent + subscriber.contentItemId;
-    const data = subscriber
-    
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.accessToken
+    }
 
-    this.http.post(url, data, {headers: this.headers} ).pipe(
+    const url = this.urlApiContent;
+
+    const body = {
+      "ContentItemId": subscriber.contentItemId,
+      "DisplayText": subscriber.firstName + '' + subscriber.lastName,
+      "TitlePart": {
+        "Title": subscriber.firstName + '' + subscriber.lastName
+      },
+      "Subscriber": {
+        "FirstName": {
+          "Text": subscriber.firstName
+        },
+        "LastName": {
+          "Text": subscriber.lastName
+        },
+        "Email": {
+          "Text": subscriber.email
+        }
+      },
+      "ContainedPart": {
+        "ListContentItemId": "462m1ps5kkzkp2k5da5pfhh2ww",
+        "Order": 0
+      }
+    };
+
+
+    this.http.post(url, body, { headers: headers }).pipe(
 
       catchError(err => {
 
@@ -178,22 +182,62 @@ export class AppComponent implements OnInit {
         this.toastr.success('You Successfully delete subscriber');
 
       });
+    this.closeEditSubscriber();
   }
 
   addSubscriber(subscriber: NgForm) {
     console.log('sub', subscriber.value)
+
     const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
     }
-    const url = this.urlApiContent
-    const data = subscriber.value
 
-    this.http.post(url, data, { headers: headers }).subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
-      () => console.log('HTTP request completed.')
-    )
+    const url = this.urlApiContent
+
+    const body = {
+      "ContentType": "Subscriber",
+      "Latest": true,
+      "Published": true,
+      "Owner": "sales",
+      "Author": "sales",
+      "DisplayText": subscriber.value.firstName + '' + subscriber.value.lastName,
+      "TitlePart": {
+        "Title": subscriber.value.firstName + '' + subscriber.value.lastName
+      },
+      "Subscriber": {
+        "FirstName": {
+          "Text": subscriber.value.firstName
+        },
+        "LastName": {
+          "Text": subscriber.value.lastName
+        },
+        "Email": {
+          "Text": subscriber.value.email
+        }
+      },
+      "ContainedPart": {
+        "ListContentItemId": "462m1ps5kkzkp2k5da5pfhh2ww",
+        "Order": 0
+      }
+    };
+
+    this.http.post(url, body, { headers: headers }).pipe(
+
+      catchError(err => {
+
+        console.log('Handling error locally and rethrowing it...', err);
+
+        this.toastr.error(err.message)
+
+        return throwError(err);
+
+      })).subscribe(() => {
+
+        this.toastr.success('You Successfully delete subscriber');
+        this.getSubscribers();
+
+      });
 
   }
 

@@ -1,16 +1,7 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 
-<button type="button" class="btn btn-primary" (click)="getToken()">
-  Get Token
-</button>
 
-<form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
-  <label>ContentId</label>
-  <input type="text" name="contentId" placeholder="ContentId" ngModel />
-  <br />
-  <input type="submit" value="Send" />
-</form>
 
 <div class="container">
   <div class="d-flex justify-content-end mb-4">
@@ -24,7 +15,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="th-sm" data-width="250">Name</th>
+          <th class="th-sm" data-width="250">First Name</th>
+          <th class="th-sm" data-width="250">Last Name</th>
           <th class="th-sm" data-width="250" data-sort="false">Email</th>
           <th class="th-sm" data-sort="false">Action</th>
         </tr>
@@ -35,6 +27,8 @@
             <ng-container *ngIf="subscriberToEdit?.contentItemId !== subscriber.contentItemId else edit">
               <td>{{ subscriber.firstName }}</td>
               <td>{{ subscriber.lastName }}</td>
+              <td>{{ subscriber.email }}</td>
+
             </ng-container>
 
             <ng-template #edit>
@@ -43,6 +37,11 @@
                 <td>
                   <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
                     [(ngModel)]="subscriber.firstName" name="firstName" />
+                </td>
+                
+                <td>
+                  <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
+                    [(ngModel)]="subscriber.lastName" name="lastName" />
                 </td>
 
                 <td>
