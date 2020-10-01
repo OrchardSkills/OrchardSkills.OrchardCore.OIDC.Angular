@@ -45,21 +45,19 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-    private toastr: ToastrService) {
-    this.authService.loginChanged.subscribe(loggedIn => {
-      this.userAuthorized = loggedIn;
-    })
-  }
+    private toastr: ToastrService) { }
+
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-  
-    this.getToken()
 
-    setTimeout(() => {
-      this.getSubscribers();
-    }, 1000);
+    this.authService.loginChanged.subscribe(loggedIn => {
+      this.userAuthorized = loggedIn;
+      this.userAuthorized ? this.getToken().toPromise().then(() => { this.getSubscribers(); }) : null;
+    })
+
 
   }
 
@@ -68,10 +66,10 @@ export class AppComponent implements OnInit {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
     const body = 'client_id=' + environment.credentialsClientId + '&client_secret=' + environment.credentialsClientSecret + '&grant_type=' + environment.credentialsClientGrantType;
     console.log("body = ", body);
-    this.http.post<any>(this.urlApiAccessToken, body, { headers }).subscribe(response => {
+    return this.http.post<any>(this.urlApiAccessToken, body, { headers }).pipe(map(response => {
       this.accessToken = response.access_token;
       console.log("response = ", response.access_token);
-    })
+    }))
 
   }
 
