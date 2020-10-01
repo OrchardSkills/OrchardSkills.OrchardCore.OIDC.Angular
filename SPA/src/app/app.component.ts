@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { catchError, map, take } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-
+import { AuthService } from './services/auth/auth.service';
 
 interface ISubscriber {
   createdUtc: string
@@ -39,19 +39,31 @@ export class AppComponent implements OnInit {
   //}
 
   subscriberToEdit!: Partial<ISubscriber> | null;
-
+  userAuthorized = false;
   editing = false;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+  constructor(
+    private authService :AuthService,
+    private http: HttpClient, 
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.isAuthorized();
     this.getToken()
     setTimeout(() => {
       this.getSubscribers();
     }, 1000);
 
+  }
+
+  isAuthorized () {
+    this.authService.isLoggedIn()
+    .then(loggedIn =>
+      {
+       this.userAuthorized = loggedIn;
+      })
   }
 
   public getToken() {

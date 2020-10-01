@@ -1,136 +1,138 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-
-
-
 <div class="container">
-  <div class="d-flex justify-content-end mb-4">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-      <fa-icon [icon]="['fas', 'plus']"></fa-icon>
-    </button>
-  </div>
-  <hr />
-  <div class="table-editor" id="table_1" data-entries="5" data-entries-options="[5, 10, 15]">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="th-sm" data-width="250">First Name</th>
-          <th class="th-sm" data-width="250">Last Name</th>
-          <th class="th-sm" data-width="250" data-sort="false">Email</th>
-          <th class="th-sm" data-sort="false">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let subscriber of subscribers | async">
+  <div *ngIf="userAuthorized">
+    <div class="d-flex justify-content-end mb-4">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+      </button>
+    </div>
+    <hr />
+    <div class="table-editor" id="table_1" data-entries="5" data-entries-options="[5, 10, 15]">
+      <table class="table">
+        <thead>
           <tr>
-            <ng-container *ngIf="subscriberToEdit?.contentItemId !== subscriber.contentItemId else edit">
-              <td>{{ subscriber.firstName }}</td>
-              <td>{{ subscriber.lastName }}</td>
-              <td>{{ subscriber.email }}</td>
-
-            </ng-container>
-
-            <ng-template #edit>
-              <ng-container *ngIf="editing && subscriberToEdit?.contentItemId == subscriber.contentItemId">
-
-                <td>
-                  <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
-                    [(ngModel)]="subscriber.firstName" name="firstName" />
-                </td>
-                
-                <td>
-                  <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
-                    [(ngModel)]="subscriber.lastName" name="lastName" />
-                </td>
-
-                <td>
-                  <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email"
-                    [(ngModel)]="subscriber.email" name="email" />
-                </td>
-
+            <th class="th-sm" data-width="250">First Name</th>
+            <th class="th-sm" data-width="250">Last Name</th>
+            <th class="th-sm" data-width="250" data-sort="false">Email</th>
+            <th class="th-sm" data-sort="false">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let subscriber of subscribers | async">
+            <tr>
+              <ng-container *ngIf="subscriberToEdit?.contentItemId !== subscriber.contentItemId else edit">
+                <td>{{ subscriber.firstName }}</td>
+                <td>{{ subscriber.lastName }}</td>
+                <td>{{ subscriber.email }}</td>
+  
+              </ng-container>
+  
+              <ng-template #edit>
+                <ng-container *ngIf="editing && subscriberToEdit?.contentItemId == subscriber.contentItemId">
+  
+                  <td>
+                    <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
+                      [(ngModel)]="subscriber.firstName" name="firstName" />
+                  </td>
+                  
+                  <td>
+                    <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
+                      [(ngModel)]="subscriber.lastName" name="lastName" />
+                  </td>
+  
+                  <td>
+                    <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email"
+                      [(ngModel)]="subscriber.email" name="email" />
+                  </td>
+  
+                  <td>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button type="button" (click)="updateSubscriber(subscriber)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Update
+                        </button>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="button" (click)="closeEditSubscriber()" class="btn btn-danger">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+  
+              </ng-template>
+  
+              <ng-container *ngIf="!editing">
                 <td>
                   <div class="row">
-                    <div class="col-md-6">
-                      <button type="button" (click)="updateSubscriber(subscriber)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Update
+                    <div class="col-md-3">
+                      <button type="button" (click)="OpenEditSubscriber(subscriber)" class="btn btn-primary"
+                        data-toggle="modal" data-target="#exampleModal">
+                        Edit
                       </button>
                     </div>
-                    <div class="col-md-6">
-                      <button type="button" (click)="closeEditSubscriber()" class="btn btn-danger">
-                        Cancel
+                    <div class="col-md-3">
+                      <button type="button" (click)="deleteSubscriber(subscriber.contentItemId)" class="btn btn-danger">
+                        Delete
                       </button>
                     </div>
                   </div>
                 </td>
               </ng-container>
-
-            </ng-template>
-
-            <ng-container *ngIf="!editing">
-              <td>
-                <div class="row">
-                  <div class="col-md-3">
-                    <button type="button" (click)="OpenEditSubscriber(subscriber)" class="btn btn-primary"
-                      data-toggle="modal" data-target="#exampleModal">
-                      Edit
-                    </button>
-                  </div>
-                  <div class="col-md-3">
-                    <button type="button" (click)="deleteSubscriber(subscriber.contentItemId)" class="btn btn-danger">
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </td>
-            </ng-container>
-
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #subscriber="ngForm" (ngSubmit)="addSubscriber(subscriber)">
-          <!-- 2 column grid layout with text inputs for the first and last names -->
-          <div class="row mb-4">
-            <div class="col">
-              <label for="form3Example1">First name</label>
-              <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" ngModel
-                name="firstName" />
-            </div>
-            <div class="col">
-              <label for="form3Example2">Last name</label>
-              <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" ngModel
-                name="lastName" />
-            </div>
-          </div>
-
-          <!-- Email input -->
-          <div class="mb-4">
-            <label for="form3Example3">Email address</label>
-            <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email" name="email" />
-          </div>
-
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4">
-            Add Subscriber
-          </button>
-        </form>
-      </div>
+  
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #subscriber="ngForm" (ngSubmit)="addSubscriber(subscriber)">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+              <div class="col">
+                <label for="form3Example1">First name</label>
+                <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" ngModel
+                  name="firstName" />
+              </div>
+              <div class="col">
+                <label for="form3Example2">Last name</label>
+                <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" ngModel
+                  name="lastName" />
+              </div>
+            </div>
+  
+            <!-- Email input -->
+            <div class="mb-4">
+              <label for="form3Example3">Email address</label>
+              <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email" name="email" />
+            </div>
+  
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Add Subscriber
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>    
+  <div *ngIf="!userAuthorized">
+    Please login to enable CRUD operations.
+  </div>   
 </div>
