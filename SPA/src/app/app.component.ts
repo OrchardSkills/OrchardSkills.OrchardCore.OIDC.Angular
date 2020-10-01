@@ -27,7 +27,25 @@ export class AppComponent implements OnInit {
   title = 'spa';
   accessToken = '';
   subscribers!: Observable<ISubscriber[]>
+
+  urlApiContent = 'https://localhost:44342/api/content/';
+
+  urlApiGraphql = 'https://localhost:44342/api/graphql';
+
+  headers = {
+    'Authorization': 'Bearer ' + this.accessToken
+  }
+
+  subscriberToEdit!: Partial<ISubscriber> | null;
+
+  editing = false;
+
+
+
   constructor(private http: HttpClient, private toastr: ToastrService) { }
+
+
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -37,6 +55,10 @@ export class AppComponent implements OnInit {
     }, 1000);
 
   }
+
+
+
+
   public getToken() {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
     const body = 'client_id=' + environment.credentialsClientId + '&client_secret=' + environment.credentialsClientSecret + '&grant_type=' + environment.credentialsClientGrantType;
@@ -48,13 +70,15 @@ export class AppComponent implements OnInit {
 
   }
 
+
+
   onSubmit(form: NgForm) {
     console.log('Your form data : ', form.value.contentId);
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
     }
-    const uri = 'https://localhost:44342/api/graphql?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
+    const uri = this.urlApiGraphql + '?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
     const body = '';
     console.log("uri = ", uri);
     console.log("headers = ", headers);
@@ -67,14 +91,18 @@ export class AppComponent implements OnInit {
     )
   }
 
+
+
+
+
   getSubscribers() {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
     }
-    const uri = 'https://localhost:44342/api/graphql?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
+    const uri = this.urlApiGraphql + '?query={subscriber {createdUtc, displayText email firstName lastName modifiedUtc publishedUtc contentItemId }}';
 
-     this.subscribers = this.http.get(uri, { headers: headers }).pipe(
+    this.subscribers = this.http.get(uri, { headers: headers }).pipe(
       map((data: any) => {
         console.log('data', data.data.subscriber)
         return data.data.subscriber
@@ -82,37 +110,74 @@ export class AppComponent implements OnInit {
     )
   }
 
+
+
+
+
+
   deleteSubscriber(id: string) {
     this.getToken();
-    const headers = {
-      'Authorization': 'Bearer ' + this.accessToken
-    }
-    const url = 'https://localhost:44342/api/content/' + id;
-    console.log('Bearer =', this.accessToken)
-    console.log('id = ', id);
-    this.http.delete(url, { headers: headers }).pipe(
-      
+
+    const url = this.urlApiContent + id;
+
+    this.http.delete(url, { headers: this.headers }).pipe(
+
       catchError(err => {
 
-      console.log('Handling error locally and rethrowing it...', err);
+        console.log('Handling error locally and rethrowing it...', err);
 
-      this.toastr.error(err.message)
+        this.toastr.error(err.message)
 
-      return throwError(err);
+        return throwError(err);
 
-    })).subscribe(() => {
+      })).subscribe(() => {
 
-      this.toastr.success('You Successfully delete subscriber');
+        this.toastr.success('You Successfully delete subscriber');
 
-    });
-    
+      });
+
     setTimeout(() => {
       this.getSubscribers();
     }, 1000);
   }
 
-  editSubscriber(id: string) {
-    console.log('id', id)
+
+
+
+
+
+  OpenEditSubscriber(subscriber: Partial<ISubscriber>) {
+    this.editing = true;
+    this.subscriberToEdit = subscriber;
+  }
+
+
+  closeEditSubscriber() {
+    this.editing = false;
+    this.subscriberToEdit = null;
+  }
+
+  updateSubscriber(subscriber: Partial<ISubscriber>) {
+
+    const url = this.urlApiContent + subscriber.contentItemId;
+    const data = subscriber
+    
+
+    this.http.post(url, data, {headers: this.headers} ).pipe(
+
+      catchError(err => {
+
+        console.log('Handling error locally and rethrowing it...', err);
+
+        this.toastr.error(err.message)
+
+        return throwError(err);
+
+      })).subscribe(() => {
+
+        this.toastr.success('You Successfully delete subscriber');
+
+      });
   }
 
   addSubscriber(subscriber: NgForm) {
@@ -121,14 +186,16 @@ export class AppComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
     }
-    const url = 'https://localhost:44342/api/connect/' + subscriber.value
+    const url = this.urlApiContent
+    const data = subscriber.value
 
-    this.http.post(url, { headers: headers }).subscribe(
+    this.http.post(url, data, { headers: headers }).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
       () => console.log('HTTP request completed.')
     )
 
   }
+
 
 }
