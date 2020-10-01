@@ -111,11 +111,8 @@ export class AppComponent implements OnInit {
 
         this.toastr.success('You Successfully deleted subscriber');
 
+        this.getSubscribers();
       });
-
-    setTimeout(() => {
-      this.getSubscribers();
-    }, 1000);
   }
 
   OpenEditSubscriber(subscriber: Partial<ISubscriber>) {
