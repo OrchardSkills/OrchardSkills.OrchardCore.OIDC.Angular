@@ -193,9 +193,9 @@ export class AppComponent implements OnInit {
       "Published": true,
       "Owner": "sales",
       "Author": "sales",
-      "DisplayText": subscriber.value.firstName + '' + subscriber.value.lastName,
+      "DisplayText": subscriber.value.firstName + ' ' + subscriber.value.lastName,
       "TitlePart": {
-        "Title": subscriber.value.firstName + '' + subscriber.value.lastName
+        "Title": subscriber.value.firstName + ' ' + subscriber.value.lastName
       },
       "Subscriber": {
         "FirstName": {
