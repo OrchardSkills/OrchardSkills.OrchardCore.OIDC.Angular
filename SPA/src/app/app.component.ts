@@ -28,23 +28,21 @@ export class AppComponent implements OnInit {
   accessToken = '';
   subscribers!: Observable<ISubscriber[]>
 
-  urlApiContent = 'https://localhost:44342/api/content/';
+  urlApiContent = environment.stsAuthority + 'api/content/';
 
-  urlApiGraphql = 'https://localhost:44342/api/graphql';
+  urlApiGraphql = environment.stsAuthority + 'api/graphql';
 
-  headers = {
-    'Authorization': 'Bearer ' + this.accessToken
-  }
+  urlApiAccessToken = environment.stsAuthority + 'connect/token/';
+
+  //headers = {
+  //  'Authorization': 'Bearer ' + this.accessToken
+  //}
 
   subscriberToEdit!: Partial<ISubscriber> | null;
 
   editing = false;
 
-
-
   constructor(private http: HttpClient, private toastr: ToastrService) { }
-
-
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -56,23 +54,19 @@ export class AppComponent implements OnInit {
 
   }
 
-
-
-
   public getToken() {
     const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
     const body = 'client_id=' + environment.credentialsClientId + '&client_secret=' + environment.credentialsClientSecret + '&grant_type=' + environment.credentialsClientGrantType;
     console.log("body = ", body);
-    this.http.post<any>('https://localhost:44342/connect/token/', body, { headers }).subscribe(response => {
+    this.http.post<any>(this.urlApiAccessToken, body, { headers }).subscribe(response => {
       this.accessToken = response.access_token;
       console.log("response = ", response.access_token);
     })
 
   }
 
-
-
   getSubscribers() {
+    this.getToken();
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
@@ -87,17 +81,15 @@ export class AppComponent implements OnInit {
     )
   }
 
-
-
-
-
-
   deleteSubscriber(id: string) {
     this.getToken();
-
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.accessToken
+    }
     const url = this.urlApiContent + id;
 
-    this.http.delete(url, { headers: this.headers }).pipe(
+    this.http.delete(url, { headers: headers }).pipe(
 
       catchError(err => {
 
@@ -118,11 +110,6 @@ export class AppComponent implements OnInit {
     }, 1000);
   }
 
-
-
-
-
-
   OpenEditSubscriber(subscriber: Partial<ISubscriber>) {
     this.editing = true;
     this.subscriberToEdit = subscriber;
@@ -135,7 +122,7 @@ export class AppComponent implements OnInit {
   }
 
   updateSubscriber(subscriber: Partial<ISubscriber>) {
-
+    this.getToken();
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
@@ -187,7 +174,7 @@ export class AppComponent implements OnInit {
 
   addSubscriber(subscriber: NgForm) {
     console.log('sub', subscriber.value)
-
+    this.getToken();
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
