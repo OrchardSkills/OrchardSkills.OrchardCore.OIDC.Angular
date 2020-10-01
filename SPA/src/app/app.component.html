@@ -103,7 +103,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #subscriber="ngForm" (ngSubmit)="addSubscriber(subscriber)">
+          <form #subscriber="ngForm" >
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
               <div class="col">
@@ -125,7 +125,7 @@
             </div>
   
             <!-- Submit button -->
-            <button  data-dismiss="modal" type="submit" class="btn btn-primary btn-block mb-4">
+            <button (click)="addSubscriber(subscriber)" data-dismiss="modal" type="submit" class="btn btn-primary btn-block mb-4">
               Add
             </button>
           </form>
