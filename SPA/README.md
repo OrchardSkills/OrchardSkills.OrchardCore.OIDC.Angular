@@ -174,119 +174,6 @@ Create folder .vscode and add file launch.json
 
 
 
-## angular-fontawesome
-
-[![npm](https://img.shields.io/npm/v/@fortawesome/angular-fontawesome.svg?style=flat-square)](https://www.npmjs.com/package/@fortawesome/angular-fontawesome)
-
-Official Angular component for Font Awesome 5
-
-## Installation
-
-Using `ng add`:
-
-```
-# See Compatibility table below to choose a correct version
-$ ng add @fortawesome/angular-fontawesome@<version>
-```
-
-Using [Yarn](https://yarnpkg.com)
-```
-$ yarn add @fortawesome/fontawesome-svg-core
-$ yarn add @fortawesome/free-solid-svg-icons
-# See Compatibility table below to choose a correct version
-$ yarn add @fortawesome/angular-fontawesome@<version>
-```
-
-Using [NPM](https://www.npmjs.com/)
-```
-$ npm install @fortawesome/fontawesome-svg-core
-$ npm install @fortawesome/free-solid-svg-icons
-# See Compatibility table below to choose a correct version
-$ npm install @fortawesome/angular-fontawesome@<version>
-```
-
-### Compatibility table
-
-|@fortawesome/angular-fontawesome|Angular|ng-add|
-|-|-|-|
-|0.1.x|5.x|not supported|
-|0.2.x|6.x|not supported|
-|0.3.x|6.x && 7.x|not supported|
-|0.4.x, 0.5.x|8.x|not supported|
-|0.6.x|9.x|supported|
-|0.7.x|10.x|supported|
-
-## Usage
-To get up and running using Font Awesome with Angular follow below steps:
-
-1. Add `FontAwesomeModule` to `imports` in
-`src/app/app.module.ts`:
-
-    ```typescript
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
-    
-    import { AppComponent } from './app.component';
-    import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-    
-    @NgModule({
-      imports: [
-        BrowserModule,
-        FontAwesomeModule
-      ],
-      declarations: [AppComponent],
-      bootstrap: [AppComponent]
-    })
-    export class AppModule { }
-    ```
-
-2. Tie the icon to the property in your component
-`src/app/app.component.ts`:
-
-    ```typescript
-    import { Component } from '@angular/core';
-    import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-    
-    @Component({
-      selector: 'app-root',
-      templateUrl: './app.component.html'
-    })
-    export class AppComponent {
-      faCoffee = faCoffee;
-    }
-    ```
-
-3. Use the icon in the template
-`src/app/app.component.html`:
-
-    ```html
-    <fa-icon [icon]="faCoffee"></fa-icon>
-    ```
-
-## Same Icon from Multiple Styles
-
-To use the same icon from the multiple styles you'll need to use import aliases to avoid the name conflicts:
-
-```javascript
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
-
-// Add icons to the library for convenient access in other components
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-
-export class AppModule {
-  constructor(library: FaIconLibrary) {
-    // Add multiple icons to the library
-    library.addIcons(fasStar, farStar);
-  }
-}
-```
-
-```html
-<fa-icon [icon]="['fas', 'star']"></fa-icon>
-<fa-icon [icon]="['far', 'star']"></fa-icon>
-```
-
 
 ## Modify angular.json
 
@@ -684,3 +571,116 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## angular-fontawesome
+
+
+Official Angular component for Font Awesome 5
+
+## Installation
+
+Using `ng add`:
+
+```
+# See Compatibility table below to choose a correct version
+$ ng add @fortawesome/angular-fontawesome@<version>
+```
+
+Using [Yarn](https://yarnpkg.com)
+```
+$ yarn add @fortawesome/fontawesome-svg-core
+$ yarn add @fortawesome/free-solid-svg-icons
+# See Compatibility table below to choose a correct version
+$ yarn add @fortawesome/angular-fontawesome@<version>
+```
+
+Using [NPM](https://www.npmjs.com/)
+```
+$ npm install @fortawesome/fontawesome-svg-core
+$ npm install @fortawesome/free-solid-svg-icons
+# See Compatibility table below to choose a correct version
+$ npm install @fortawesome/angular-fontawesome@<version>
+```
+
+### Compatibility table
+
+|@fortawesome/angular-fontawesome|Angular|ng-add|
+|-|-|-|
+|0.1.x|5.x|not supported|
+|0.2.x|6.x|not supported|
+|0.3.x|6.x && 7.x|not supported|
+|0.4.x, 0.5.x|8.x|not supported|
+|0.6.x|9.x|supported|
+|0.7.x|10.x|supported|
+
+## Usage
+To get up and running using Font Awesome with Angular follow below steps:
+
+1. Add `FontAwesomeModule` to `imports` in
+`src/app/app.module.ts`:
+
+    ```typescript
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    
+    import { AppComponent } from './app.component';
+    import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+    
+    @NgModule({
+      imports: [
+        BrowserModule,
+        FontAwesomeModule
+      ],
+      declarations: [AppComponent],
+      bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+    ```
+
+2. Tie the icon to the property in your component
+`src/app/app.component.ts`:
+
+    ```typescript
+    import { Component } from '@angular/core';
+    import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+    
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html'
+    })
+    export class AppComponent {
+      faCoffee = faCoffee;
+    }
+    ```
+
+3. Use the icon in the template
+`src/app/app.component.html`:
+
+    ```html
+    <fa-icon [icon]="faCoffee"></fa-icon>
+    ```
+
+## Same Icon from Multiple Styles
+
+To use the same icon from the multiple styles you'll need to use import aliases to avoid the name conflicts:
+
+```javascript
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+
+// Add icons to the library for convenient access in other components
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    // Add multiple icons to the library
+    library.addIcons(fasStar, farStar);
+  }
+}
+```
+
+```html
+<fa-icon [icon]="['fas', 'star']"></fa-icon>
+<fa-icon [icon]="['far', 'star']"></fa-icon>
+```
