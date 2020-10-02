@@ -84,7 +84,7 @@ export class AppComponent implements OnInit {
     this.subscribers = this.http.get(uri, { headers: headers }).pipe(
       map((data: any) => {
         console.log('data', data.data.subscriber)
-        return data.data.subscriber
+        return data ? data.data.subscriber : null;
       })
     )
   }

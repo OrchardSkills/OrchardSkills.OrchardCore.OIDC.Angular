@@ -20,38 +20,48 @@
             <th class="th-sm" data-sort="false">Action</th>
           </tr>
         </thead>
+
         <tbody>
+          <tr *ngIf="(subscribers | async)?.length == 0">
+            <td></td>
+            <div class="text-center">
+              There is no subscribers
+            </div>
+            <td></td>
+            <td></td>
+          </tr>
           <ng-container *ngFor="let subscriber of subscribers | async">
             <tr>
               <ng-container *ngIf="subscriberToEdit?.contentItemId !== subscriber.contentItemId else edit">
                 <td>{{ subscriber.firstName }}</td>
                 <td>{{ subscriber.lastName }}</td>
                 <td>{{ subscriber.email }}</td>
-  
+
               </ng-container>
-  
+
               <ng-template #edit>
                 <ng-container *ngIf="editing && subscriberToEdit?.contentItemId == subscriber.contentItemId">
-  
+
                   <td>
                     <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
                       [(ngModel)]="subscriber.firstName" name="firstName" />
                   </td>
-                  
+
                   <td>
                     <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
                       [(ngModel)]="subscriber.lastName" name="lastName" />
                   </td>
-  
+
                   <td>
                     <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email"
                       [(ngModel)]="subscriber.email" name="email" />
                   </td>
-  
+
                   <td>
                     <div class="row">
                       <div class="col-md-6">
-                        <button type="button" (click)="updateSubscriber(subscriber)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" (click)="updateSubscriber(subscriber)" class="btn btn-primary"
+                          data-toggle="modal" data-target="#exampleModal">
                           Update
                         </button>
                       </div>
@@ -63,9 +73,9 @@
                     </div>
                   </td>
                 </ng-container>
-  
+
               </ng-template>
-  
+
               <ng-container *ngIf="!editing">
                 <td>
                   <div class="row">
@@ -83,14 +93,14 @@
                   </div>
                 </td>
               </ng-container>
-  
+
             </tr>
           </ng-container>
         </tbody>
       </table>
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -103,7 +113,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #subscriber="ngForm" >
+          <form #subscriber="ngForm">
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
               <div class="col">
@@ -117,23 +127,24 @@
                   name="lastName" />
               </div>
             </div>
-  
+
             <!-- Email input -->
             <div class="mb-4">
               <label for="form3Example3">Email address</label>
               <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email" name="email" />
             </div>
-  
+
             <!-- Submit button -->
-            <button (click)="addSubscriber(subscriber)" data-dismiss="modal" type="submit" class="btn btn-primary btn-block mb-4">
+            <button (click)="addSubscriber(subscriber)" data-dismiss="modal" type="submit"
+              class="btn btn-primary btn-block mb-4">
               Add
             </button>
           </form>
         </div>
       </div>
     </div>
-  </div>    
+  </div>
   <div *ngIf="!userAuthorized">
     Please login to enable CRUD operations.
-  </div>   
+  </div>
 </div>
