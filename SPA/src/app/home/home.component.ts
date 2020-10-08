@@ -15,7 +15,7 @@ import { Observable, throwError } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  accessToken!: string;
+  accessToken!: string | null;
   subscribers!: Observable<ISubscriber[]>
 
   urlApiContent = environment.stsAuthority + 'api/content/';
@@ -34,27 +34,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.authService.getAccessToken().then(token => {
+      this.accessToken = token
+    })
+    
     this.authService.isLoggedIn().then(loggedIn => {
       this.userAuthorized = loggedIn;
-      this.userAuthorized ? this.getToken().toPromise().then(() => { this.getSubscribers(); }) : null;
+      this.userAuthorized && this.accessToken ?  this.getSubscribers() : null;
     })
 
   }
 
 
-  public getToken() {
-    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-    const body = 'client_id=' + environment.credentialsClientId + '&client_secret=' + environment.credentialsClientSecret + '&grant_type=' + environment.credentialsClientGrantType;
-    console.log("body = ", body);
-    return this.http.post<any>(this.urlApiAccessToken, body, { headers }).pipe(map(response => {
-      this.accessToken = response.access_token;
-      console.log("response = ", response.access_token);
-    }))
-
-  }
 
   getSubscribers() {
-    this.getToken();
+
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ' + this.accessToken
@@ -70,7 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteSubscriber(id: string) {
-    this.getToken();
+
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
@@ -107,7 +101,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateSubscriber(subscriber: Partial<ISubscriber>) {
-    this.getToken();
+
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
@@ -158,8 +152,7 @@ export class HomeComponent implements OnInit {
   }
 
   addSubscriber(subscriber: NgForm) {
-    console.log('sub', subscriber.value)
-    this.getToken();
+
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.accessToken
