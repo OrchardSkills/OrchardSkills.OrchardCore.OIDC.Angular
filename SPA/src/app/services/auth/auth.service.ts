@@ -3,7 +3,6 @@ import { UserManager, User } from 'oidc-client';
 
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AuthContext } from '../../model/auth-context';
 import { environment } from '../../../environments/environment';
 
 
@@ -11,12 +10,11 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private _userManager: UserManager;
+  private _oidcClient: UserManager;
   private _user!: User | null;
   private _loginChangedSubject = new Subject<boolean>();
 
-  loginChanged = this._loginChangedSubject.asObservable();
-  authContext!: AuthContext;
+  public loginChanged = this._loginChangedSubject.asObservable();
 
   constructor(private _httpClient: HttpClient) {
     const stsSettings = {
@@ -62,14 +60,14 @@ export class AuthService {
       // extraQueryParams: (object): An object containing additional query string parameters to be including in the authorization request. E.g, when using Azure AD to obtain an access token an additional resource parameter is required. extraQueryParams: {resource:"some_identifier"}      
 
     };
-    this._userManager = new UserManager(stsSettings);
-    this._userManager.events.addAccessTokenExpired(_ => {
+    this._oidcClient = new UserManager(stsSettings);
+    this._oidcClient.events.addAccessTokenExpired(_ => {
       this._loginChangedSubject.next(false);
     });
-    this._userManager.events.addUserLoaded(user => {
+    this._oidcClient.events.addUserLoaded(user => {
+      console.log('user', user)
       if (this._user !== user) {
         this._user = user;
-        this.loadSecurityContext();
         this._loginChangedSubject.next(!!user && !user.expired);
       }
     });
@@ -77,24 +75,21 @@ export class AuthService {
   }
 
   login() {
-    return this._userManager.signinRedirect(); // Returns promise to trigger a redirect of the current window to the authorization endpoint.
+    return this._oidcClient.signinRedirect(); // Returns promise to trigger a redirect of the current window to the authorization endpoint.
   }
 
   async isLoggedIn(): Promise<boolean> {
-    const user = await this._userManager.getUser();
+    const user = await this._oidcClient.getUser();
     const userCurrent = !!user && !user.expired;
     if (this._user !== user) {
       this._loginChangedSubject.next(userCurrent);
-    }
-    if (userCurrent && !this.authContext) {
-      this.loadSecurityContext();
     }
     user ? this._user = user : null;
     return userCurrent;
   }
 
   async completeLogin() {
-    const user = await this._userManager.signinRedirectCallback() // Returns promise to process response from the authorization endpoint. The result of the promise is the authenticated User
+    const user = await this._oidcClient.signinRedirectCallback() // Returns promise to process response from the authorization endpoint. The result of the promise is the authenticated User
       ;
     this._user = user;
     this._loginChangedSubject.next(!!user && !user.expired);
@@ -102,33 +97,20 @@ export class AuthService {
   }
 
   logout() {
-    this._userManager.signoutRedirect(); // Returns promise to trigger a redirect of the current window to the end session endpoint.
+    this._oidcClient.signoutRedirect(); // Returns promise to trigger a redirect of the current window to the end session endpoint.
   }
 
   completeLogout() {
     this._user = null;
     this._loginChangedSubject.next(false);
-    return this._userManager.signoutRedirectCallback(); // Returns promise to process response from the end session endpoint.
+    return this._oidcClient.signoutRedirectCallback(); // Returns promise to process response from the end session endpoint.
   }
 
   async getAccessToken() {
-    const user = await this._userManager.getUser() // Returns promise to load the User object for the currently authenticated user.
+    const user = await this._oidcClient.getUser() // Returns promise to load the User object for the currently authenticated user.
       ;
     return !!user && !user.expired ? user.access_token : null
 
-  }
-
-  loadSecurityContext() {
-    this._httpClient
-      .get<AuthContext>(`${environment.apiRoot}Projects/AuthContext`)
-      .subscribe(
-        context => {
-          this.authContext = new AuthContext();
-          this.authContext.claims = context.claims;
-          this.authContext.userProfile = context.userProfile;
-        },
-        error => console.error(error)
-      );
   }
 
 }
