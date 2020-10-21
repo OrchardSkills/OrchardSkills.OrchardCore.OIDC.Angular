@@ -43,17 +43,17 @@
 
                   <td>
                     <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
-                      [(ngModel)]="subscriber.firstName" name="firstName" />
+                      [(ngModel)]="subscriber.firstName" name="firstName" required />
                   </td>
 
                   <td>
                     <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
-                      [(ngModel)]="subscriber.lastName" name="lastName" />
+                      [(ngModel)]="subscriber.lastName" name="lastName" required />
                   </td>
 
                   <td>
                     <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email"
-                      [(ngModel)]="subscriber.email" name="email" />
+                      [(ngModel)]="subscriber.email" name="email" required/>
                   </td>
 
                   <td>
@@ -118,23 +118,23 @@
               <div class="col">
                 <label for="form3Example1">First name</label>
                 <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" ngModel
-                  name="firstName" />
+                  name="firstName" required />
               </div>
               <div class="col">
                 <label for="form3Example2">Last name</label>
                 <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" ngModel
-                  name="lastName" />
+                  name="lastName"  required/>
               </div>
             </div>
 
             <!-- Email input -->
             <div class="mb-4">
               <label for="form3Example3">Email address</label>
-              <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email" name="email" />
+              <input type="email" class="form-control" ngModel placeholder="Email" aria-label="Email" name="email" required/>
             </div>
 
             <!-- Submit button -->
-            <button (click)="addSubscriber(subscriber)" data-dismiss="modal" type="submit"
+            <button [disabled]="subscriber.invalid" (click)="addSubscriber(subscriber)" data-dismiss="modal" type="submit"
               class="btn btn-primary btn-block mb-4">
               Add
             </button>

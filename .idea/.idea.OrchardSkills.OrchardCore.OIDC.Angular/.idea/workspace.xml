@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0d764567-1be7-41ee-8c39-f294a018b333" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OrchardSkills.OrchardCore.OIDC.Angular/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/Nuget.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OrchardSkills.OrchardCore.CMS/Areas/Identity/Pages/Shared/_LoginPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/OrchardSkills.OrchardCore.CMS/Areas/Identity/Pages/Shared/_LoginPartial.cshtml" afterDir="false" />
@@ -84,6 +87,7 @@
       <change beforePath="$PROJECT_DIR$/SPA/.browserslistrc" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/.browserslistrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPA/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/package-lock.json" afterDir="false" />
@@ -92,26 +96,10 @@
       <change beforePath="$PROJECT_DIR$/SPA/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/contact-us/contact-us.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/home/home.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/home/home.component.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/auth-context.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/auth-context.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/milestone-status.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/milestone-status.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/milestone.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/milestone.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/project.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/project.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/simple-claim.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/simple-claim.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/user-permission.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/user-permission.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/model/user-profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/model/user-profile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/services/account/account.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/account/account.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/services/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/account/account.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/services/auth-interceptor/auth-interceptor.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/auth-interceptor/auth-interceptor.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPA/src/app/services/auth-interceptor/auth-interceptor.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/auth-interceptor/auth-interceptor.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/services/auth/auth.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/auth/auth.service.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/services/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/services/auth/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/shared/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/shared/navbar/navbar.component.html" afterDir="false" />
@@ -124,6 +112,7 @@
       <change beforePath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/app/signout-callback/signout-callback.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPA/src/assets/css/mdb.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/assets/css/mdb.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/assets/js/mdb.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/assets/js/mdb.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/assets/scss/bootstrap/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/assets/scss/bootstrap/_alert.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SPA/src/assets/scss/bootstrap/_badge.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SPA/src/assets/scss/bootstrap/_badge.scss" afterDir="false" />
@@ -349,6 +338,8 @@
       <workItem from="1601066032838" duration="1056000" />
       <workItem from="1601124567418" duration="164000" />
       <workItem from="1601124750742" duration="734000" />
+      <workItem from="1602439395198" duration="14000" />
+      <workItem from="1602439449566" duration="14000" />
     </task>
     <servers />
   </component>

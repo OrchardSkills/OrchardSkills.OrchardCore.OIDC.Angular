@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="OrchardCore.Application.Cms.Targets" Version="1.0.0-rc2-14526" />
-	<PackageReference Include="OrchardCore.Logging.NLog" Version="1.0.0-rc2-14526" />
+	<PackageReference Include="OrchardCore.Application.Cms.Targets" Version="1.0.0-rc2-14969" />
+	<PackageReference Include="OrchardCore.Logging.NLog" Version="1.0.0-rc2-14969" />
   </ItemGroup>	
 	
   <ItemGroup>
