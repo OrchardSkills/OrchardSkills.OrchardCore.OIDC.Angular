@@ -123,3 +123,6 @@ Localization/
 
 # Orchard
 is-cache/
+
+# IntelliJ
+.idea
